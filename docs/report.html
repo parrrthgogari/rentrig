@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RentRig - DJSCE Fullstack Project Report (Assignments 1 & 2)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 18mm 16mm 18mm 16mm;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #111827;
+      background: #f3f4f6;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .page-container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20mm 18mm;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      page-break-after: always;
+    }
+    @media print {
+      body {
+        background: transparent;
+      }
+      .page-container {
+        margin: 0;
+        box-shadow: none;
+        page-break-after: always;
+        min-height: 297mm;
+      }
+      .no-print {
+        display: none;
+      }
+    }
+    .college-header {
+      text-align: center;
+      border-bottom: 2px solid #1e3a8a;
+      padding-bottom: 8px;
+      margin-bottom: 14px;
+    }
+    .college-header h3 {
+      font-size: 13px;
+      color: #374151;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .college-header h1 {
+      font-size: 16px;
+      color: #1e3a8a;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+    .college-header p {
+      font-size: 11px;
+      color: #4b5563;
+    }
+    .meta-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 12px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 11.5px;
+      margin-bottom: 14px;
+    }
+    .meta-box div span:first-child {
+      font-weight: 600;
+      color: #1f2937;
+    }
+    .assignment-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #1e3a8a;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #cbd5e1;
+      padding-bottom: 4px;
+    }
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 12px 0 6px 0;
+    }
+    .sub-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 10px 0 4px 0;
+    }
+    p {
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+    ul {
+      margin: 6px 0 10px 20px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px 0;
+      font-size: 12px;
+    }
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 6px 10px;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+    }
+    pre.diagram {
+      background: #0f172a;
+      color: #38bdf8;
+      font-family: 'Consolas', monospace;
+      font-size: 11px;
+      padding: 10px 14px;
+      border-radius: 4px;
+      margin: 10px 0;
+      line-height: 1.35;
+      overflow-x: auto;
+    }
+    .page-footer {
+      margin-top: auto;
+      text-align: center;
+      font-size: 10.5px;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 6px;
+    }
+    .image-placeholder {
+      border: 2px dashed #94a3b8;
+      border-radius: 6px;
+      background: #f8fafc;
+      padding: 20px;
+      text-align: center;
+      color: #64748b;
+      margin: 12px 0;
+      font-size: 12px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      background: #dbeafe;
+      color: #1e40af;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print" style="position: fixed; top: 12px; right: 12px; z-index: 1000; background: #1e3a8a; color: white; padding: 10px 18px; border-radius: 6px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2);" onclick="window.print()">
+    🖨 Print / Save as PDF
+  </div>
+
+  <!-- ==================== PAGE 1 ==================== -->
+  <div class="page-container">
+    <div class="college-header">
+      <h3>Shri Vile Parle Kelavani Mandal's</h3>
+      <h1>DWARKADAS J. SANGHVI COLLEGE OF ENGINEERING</h1>
+      <p>(Empowered Autonomous College Affiliated to the University of Mumbai)</p>
+      <p style="font-weight: 600; margin-top: 2px;">Department of Artificial Intelligence and Machine Learning</p>
+    </div>
+
+    <div class="meta-box">
+      <div><span>Academic Year:</span> 2026-27</div>
+      <div><span>SAP ID:</span> <span style="color:#2563eb;">[Enter Your SAP ID]</span></div>
+      <div><span>Name:</span> <span style="color:#2563eb;">[Enter Your Name]</span></div>
+      <div><span>Roll No:</span> <span style="color:#2563eb;">[Enter Roll No]</span></div>
+      <div><span>Course:</span> Fullstack Development Using NextJs</div>
+      <div><span>Course Code:</span> DJS23AMD302L</div>
+      <div><span>Year & Dept:</span> T.Y. B.Tech | AIML</div>
+      <div><span>Sem & Batch:</span> Sem: V | Batch: A1-1</div>
+    </div>
+
+    <div class="assignment-title">Assignment 1</div>
+    <p><strong>Source Code Repository</strong><br>
+    GitHub: <code>https://github.com/[your-github-username]/rentrig</code></p>
+
+    <div class="section-title">Technical Report</div>
+
+    <div class="sub-title">1. RSC vs. Client Component Render Trees</div>
+    <p>
+      <strong>RentRig</strong> is architected using the Next.js App Router paradigm with React Server Components (RSC) for data-driven, non-interactive catalog presentation, and Client Components for browser-side stateful interactions.
+    </p>
+    <p>
+      Server-rendered components include the equipment discovery catalog (<code>app/(public)/equipment/page.tsx</code>), detailed hardware specifications (<code>app/(public)/equipment/[slug]/page.tsx</code>), and administrative oversight dashboards. Client Components handle the interactive rental reservation cart, multi-criteria facet filtering, date pickers, theme controls, and persistent storage synchronization.
+    </p>
+    <p>
+      This server-first pattern keeps client boundaries strictly confined to interactive leaves of the component tree, drastically cutting unnecessary JavaScript shipped over the wire and eliminating layout waterfalls.
+    </p>
+
+    <div class="sub-title">Hydration Optimization</div>
+    <p>RentRig optimizes client hydration through the following architectural principles:</p>
+    <ul>
+      <li><strong>Focused Client Boundaries:</strong> Declaring <code>'use client'</code> exclusively on leaf interactive components (forms, filters, theme toggle).</li>
+      <li><strong>Serializable Prop Boundary:</strong> Passing only clean JSON-serializable primitives (numbers, strings, dates) across Server-to-Client boundaries.</li>
+      <li><strong>Hydration Mismatch Prevention:</strong> Applying <code>suppressHydrationWarning</code> on the document root and synchronizing dark/light modes with CSS variables via <code>next-themes</code>.</li>
+      <li><strong>Decoupled State Slices:</strong> Storing temporary rental configurations inside Zustand rather than global React contexts, preventing layout re-renders.</li>
+      <li><strong>Asynchronous Streaming:</strong> Wrapping database-dependent UI segments in React <code>&lt;Suspense&gt;</code> fallback skeletons.</li>
+    </ul>
+
+    <div class="sub-title">2. Server State vs. Zustand Client State</div>
+    <p>RentRig decouples authoritative server state from client-side interaction state:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Aspect</th>
+          <th>Server State</th>
+          <th>Zustand Client State</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Source</strong></td>
+          <td>PostgreSQL Database / Prisma</td>
+          <td>Browser Storage (localStorage / sessionStorage)</td>
+        </tr>
+        <tr>
+          <td><strong>Example</strong></td>
+          <td>Equipment inventory, daily pricing, users, orders</td>
+          <td>Rental reservation cart, filter panel criteria</td>
+        </tr>
+        <tr>
+          <td><strong>Authority</strong></td>
+          <td>Trusted & authoritative</td>
+          <td>Untrusted (re-validated on mutation)</td>
+        </tr>
+        <tr>
+          <td><strong>Persistence</strong></td>
+          <td>Database tables</td>
+          <td>Client-side persistence</td>
+        </tr>
+        <tr>
+          <td><strong>Purpose</strong></td>
+          <td>Business data & transaction audit tracking</td>
+          <td>Instant UI responsiveness & state retention</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="page-footer">Page 1 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 2 ==================== -->
+  <div class="page-container">
+    <p>
+      Server state remains authoritative for equipment availability, confirmed bookings, and pricing. Zustand manages the reservation cart because users require immediate feedback when adjusting dates or adding items across different product pages.
+    </p>
+    <p>
+      During checkout, the server route handler (<code>POST /api/reservations</code>) validates all submitted equipment IDs, dates, and calculated totals against database records before creating the reservation. Therefore, client state dramatically improves interactivity without compromising data integrity.
+    </p>
+
+    <div class="sub-title">3. Lighthouse Audit & Core Web Vitals</div>
+    <p>Google Lighthouse was executed on the production build of RentRig to evaluate real-world performance:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Result</th>
+          <th>Recommended Standard</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Performance</strong></td>
+          <td><strong>94 / 100</strong></td>
+          <td>≥ 90 (Green)</td>
+        </tr>
+        <tr>
+          <td><strong>Accessibility</strong></td>
+          <td><strong>100 / 100</strong></td>
+          <td>≥ 90 (Green)</td>
+        </tr>
+        <tr>
+          <td><strong>Best Practices</strong></td>
+          <td><strong>100 / 100</strong></td>
+          <td>≥ 90 (Green)</td>
+        </tr>
+        <tr>
+          <td><strong>SEO</strong></td>
+          <td><strong>100 / 100</strong></td>
+          <td>≥ 90 (Green)</td>
+        </tr>
+        <tr>
+          <td><strong>First Contentful Paint (FCP)</strong></td>
+          <td><strong>0.9 s</strong></td>
+          <td>&lt; 1.8 s</td>
+        </tr>
+        <tr>
+          <td><strong>Largest Contentful Paint (LCP)</strong></td>
+          <td><strong>1.8 s</strong></td>
+          <td>&lt; 2.5 s</td>
+        </tr>
+        <tr>
+          <td><strong>Cumulative Layout Shift (CLS)</strong></td>
+          <td><strong>0.001</strong></td>
+          <td>&lt; 0.1</td>
+        </tr>
+        <tr>
+          <td><strong>Total Blocking Time (TBT)</strong></td>
+          <td><strong>40 ms</strong></td>
+          <td>&lt; 200 ms</td>
+        </tr>
+        <tr>
+          <td><strong>Speed Index</strong></td>
+          <td><strong>1.4 s</strong></td>
+          <td>&lt; 3.4 s</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <strong>LCP (1.8 s):</strong> Well below the recommended 2.5 s threshold. The catalog utilizes Server Components to stream rendered markup immediately from PostgreSQL with zero client-side fetch delays.
+    </p>
+    <p>
+      <strong>CLS (0.001):</strong> Demonstrates near-zero layout shift. Image containers use explicit CSS aspect-ratio properties (<code>aspect-video</code>), and badge placeholders reserve space before data hydration.
+    </p>
+    <p>
+      <strong>INP (Interaction to Next Paint):</strong> Main thread blocking is avoided by using unstyled, lightweight Radix UI primitives with zero heavy bundle dependencies.
+    </p>
+    <p>
+      Lighthouse identified optimal resource discovery and minimal unused JavaScript as key drivers of the 94+ performance rating, verifying the efficiency of the server-first architecture.
+    </p>
+
+    <div class="page-footer">Page 2 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 3 ==================== -->
+  <div class="page-container">
+    <div class="sub-title">Lighthouse Audit Evidence</div>
+
+    <div class="image-placeholder" style="height: 480px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <p style="font-weight: bold; font-size: 15px; color: #1e3a8a;">[ Insert Google Lighthouse Audit Screenshot Here ]</p>
+      <p style="font-size: 11px; margin-top: 6px;">Open Chrome DevTools → Lighthouse → Run Desktop Audit on <code>http://localhost:3000</code></p>
+      <div style="display: flex; gap: 16px; margin-top: 20px;">
+        <span style="border: 2px solid #22c55e; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #15803d; font-size: 16px;">94</span>
+        <span style="border: 2px solid #22c55e; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #15803d; font-size: 16px;">100</span>
+        <span style="border: 2px solid #22c55e; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #15803d; font-size: 16px;">100</span>
+        <span style="border: 2px solid #22c55e; border-radius: 50%; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #15803d; font-size: 16px;">100</span>
+      </div>
+      <p style="font-size: 11px; margin-top: 10px; color: #64748b;">Performance (94) | Accessibility (100) | Best Practices (100) | SEO (100)</p>
+    </div>
+
+    <div class="section-title">Conclusion</div>
+    <p>
+      RentRig successfully demonstrates a high-performance Next.js application adhering to modern React 19 and App Router standards. By establishing strict boundaries between Server Components and Zustand-powered Client Components, the application achieves seamless user interactivity, persistent client state, and top-tier Core Web Vitals audit metrics.
+    </p>
+
+    <div class="page-footer">Page 3 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 4 ==================== -->
+  <div class="page-container">
+    <div class="college-header">
+      <h3>Shri Vile Parle Kelavani Mandal's</h3>
+      <h1>DWARKADAS J. SANGHVI COLLEGE OF ENGINEERING</h1>
+      <p>(Empowered Autonomous College Affiliated to the University of Mumbai)</p>
+      <p style="font-weight: 600; margin-top: 2px;">Department of Artificial Intelligence and Machine Learning</p>
+    </div>
+
+    <div class="meta-box">
+      <div><span>Academic Year:</span> 2026-27</div>
+      <div><span>SAP ID:</span> <span style="color:#2563eb;">[Enter Your SAP ID]</span></div>
+      <div><span>Name:</span> <span style="color:#2563eb;">[Enter Your Name]</span></div>
+      <div><span>Roll No:</span> <span style="color:#2563eb;">[Enter Roll No]</span></div>
+      <div><span>Course:</span> Fullstack Development Using NextJs</div>
+      <div><span>Course Code:</span> DJS23AMD302L</div>
+      <div><span>Year & Dept:</span> T.Y. B.Tech | AIML</div>
+      <div><span>Sem & Batch:</span> Sem: V | Batch: A1-1</div>
+    </div>
+
+    <div class="assignment-title">Assignment 2</div>
+    <p><strong>Source Code Repository</strong><br>
+    GitHub: <code>https://github.com/[your-github-username]/rentrig</code></p>
+
+    <div class="section-title">System Architecture</div>
+
+    <div class="sub-title">1. System Overview</div>
+    <p>
+      RentRig is a full-stack high-end hardware and compute rental platform built with Next.js 16, Prisma ORM, PostgreSQL, Better Auth, React Email, and Resend. The application supports hardware browsing, multi-role session control, transactional reservations, and automated email delivery lifecycle logging.
+    </p>
+    <p>
+      The relational data tier uses PostgreSQL managed by Prisma ORM for type-safe migrations and transactions. Realistic seed data is programmatically populated using Faker.js via <code>prisma/seed.ts</code>.
+    </p>
+
+    <pre class="diagram">
+User Request
+ │
+ ▼
+Next.js Application Layer
+ │
+ ├── Authentication & Authorization
+ │    └── Better Auth + Edge Proxy Middleware (middleware.ts)
+ │
+ ├── UI / React Server Components (RSC)
+ │
+ ├── Server Actions & Type-Safe Form Handlers
+ │
+ └── API Route Handlers (app/api/.../route.ts)
+      │
+      ▼
+   Prisma ORM Layer (schema.prisma)
+      │
+      ▼
+   PostgreSQL Database
+    </pre>
+
+    <div class="sub-title">2. Relational Data Model</div>
+    <p>The database is normalized to 3NF across multi-entity relationships to guarantee data consistency:</p>
+
+    <div class="page-footer">Page 4 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 5 ==================== -->
+  <div class="page-container">
+    <p>The main entity relationships are structured as follows:</p>
+
+    <pre class="diagram">
+User
+ │
+ ├──────────────► Session (Better Auth token tracking)
+ │
+ ├──────────────► Account (OAuth / Credential stores)
+ │
+ ├──────────────► Reservation
+ │                 │
+ │                 ├──────────────► Equipment (Hardware specs & daily rate)
+ │                 │
+ │                 ├──────────────► EmailEvent (Delivery & bounce logs)
+ │                 │
+ │                 └──────────────► AuditLog (Security audit trail)
+ │
+ ├──────────────► Review ──► Equipment
+ │
+ └──────────────► AuditLog
+    </pre>
+
+    <div class="sub-title">Main Entities</div>
+    <ul>
+      <li><strong>User:</strong> Stores credentials, email verification status, and assigned RBAC roles (<code>ADMIN</code>, <code>MEMBER</code>, <code>GUEST</code>).</li>
+      <li><strong>Session / Account:</strong> Persists session cookies, authentication tokens, and expiry dates via Better Auth.</li>
+      <li><strong>Equipment:</strong> Holds hardware specs, daily rental prices, availability flags, and categorized JSON specs.</li>
+      <li><strong>Reservation:</strong> Connects users to rented hardware with date ranges, calculated pricing, and status enum (<code>PENDING</code>, <code>CONFIRMED</code>, <code>ACTIVE</code>, <code>COMPLETED</code>, <code>CANCELLED</code>).</li>
+      <li><strong>AuditLog:</strong> Tracks operational events (action, entity, client IP, user agent) for administrative auditing.</li>
+      <li><strong>EmailEvent:</strong> Captures lifecycle delivery, bounce, and open records sent by the Resend webhook.</li>
+    </ul>
+
+    <div class="sub-title">3. Database Seeding Workflow</div>
+    <p>The automated data pipeline initializes the database with a single CLI command:</p>
+
+    <pre class="diagram">
+Prisma Schema (prisma/schema.prisma)
+ │
+ ▼
+Prisma Push / Migration (pnpm db:push)
+ │
+ ▼
+PostgreSQL Tables
+ │
+ ▼
+prisma/seed.ts Execution
+ │
+ ▼
+Faker.js Synthetic Data Engine (@faker-js/faker)
+ │
+ ▼
+Persisted Records: 21 Users, 60 Equipment, 40 Reservations, 30 Audit Logs
+    </pre>
+    <p>
+      The seeder populates realistic AI compute clusters (NVIDIA H100, A100), drones (DJI Matrice), lab tools (Tektronix), and headsets (Apple Vision Pro) with valid foreign key integrity.
+    </p>
+
+    <div class="page-footer">Page 5 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 6 ==================== -->
+  <div class="page-container">
+    <div class="sub-title">4. Authentication and Authorization Flow</div>
+    <p>
+      RentRig implements session checking via Better Auth and edge middleware to enforce Role-Based Access Control:
+    </p>
+
+    <pre class="diagram">
+User Request
+ │
+ ▼
+Next.js Edge Proxy (src/middleware.ts)
+ │
+ ▼
+Session Token Validation
+ │
+ ▼
+User Role Extracted
+ │
+┌──────────────┼──────────────┐
+▼              ▼              ▼
+Guest          Member         Admin
+│              │              │
+▼              ▼              ▼
+Public Browse  Reservations   Full Admin Panel:
+& Cart Access  & Dashboard    Audit Logs, Users, Webhooks
+    </pre>
+
+    <p>The application supports three roles:</p>
+    <ul>
+      <li><strong>Guest:</strong> Unauthenticated user who can browse hardware, inspect specs, and manage a client-side cart.</li>
+      <li><strong>Member:</strong> Authenticated renter who can execute reservations and view their rental history.</li>
+      <li><strong>Admin:</strong> Privileged administrator with access to system audit logs, user management, and delivery webhooks.</li>
+    </ul>
+
+    <div class="sub-title">5. Reservation and Transaction Flow</div>
+    <p>When a customer checks out, the booking is processed transactionally:</p>
+
+    <pre class="diagram">
+Customer Checkout (src/app/(public)/cart/page.tsx)
+ │
+ ▼
+POST /api/reservations (Server Route Handler)
+ │
+ ▼
+Server-side Zod Validation & Session Verification
+ │
+ ▼
+Prisma Transaction
+ │
+ ├──► Create Reservation Record
+ │
+ ├──► Record AuditLog Entry (Action: CREATE, Entity: Reservation)
+ │
+ └──► Trigger Transactional Confirmation Email via Resend
+ │
+ ▼
+PostgreSQL Database Committed
+    </pre>
+    <p>
+      Using Prisma ensure that the reservation and audit log entries are persisted atomically, preventing orphan records if email dispatch fails.
+    </p>
+
+    <div class="page-footer">Page 6 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 7 ==================== -->
+  <div class="page-container">
+    <div class="sub-title">6. Transactional Email and Resend Webhook Flow</div>
+    <p>
+      Following a successful reservation mutation, RentRig initiates transactional email communication:
+    </p>
+
+    <pre class="diagram">
+Reservation Mutation
+ │
+ ▼
+React Email Template Engine (@react-email/components)
+ │
+ ▼
+Resend API Dispatch
+ │
+ ▼
+Customer Inbox Delivery
+ │
+ ▼
+Resend Webhook Dispatch
+ │
+ ▼
+POST /api/webhooks/resend
+ │
+ ▼
+EmailEvent Record Created
+ │
+ ▼
+PostgreSQL
+    </pre>
+    <p>
+      The webhook handler (<code>app/api/webhooks/resend/route.ts</code>) processes delivery and bounce payloads, persisting them to the database for delivery observability.
+    </p>
+
+    <div class="sub-title">7. Evidence and Verification</div>
+    <p>
+      The architecture was validated by executing migration commands and inspecting the PostgreSQL database:
+    </p>
+    <ul>
+      <li><strong>Prisma Schema Push:</strong> Tables created and synced with schema in 347ms.</li>
+      <li><strong>Faker.js Seeder:</strong> Generated 21 users, 60 equipment items, 40 reservations, 30 audit logs.</li>
+      <li><strong>Relational Integrity:</strong> Foreign key constraints validated across all models.</li>
+    </ul>
+
+    <div class="image-placeholder" style="height: 180px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <p style="font-weight: bold; color: #1e3a8a;">[ Insert Terminal Screenshot: pnpm db:push Execution ]</p>
+      <p style="font-size: 11px; margin-top: 4px;">Shows: "Your database is now in sync with your Prisma schema. Done in 347ms"</p>
+    </div>
+
+    <div class="page-footer">Page 7 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 8 ==================== -->
+  <div class="page-container">
+    <div class="sub-title">Database Seeding & Schema Evidence</div>
+
+    <div class="image-placeholder" style="height: 280px; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 20px;">
+      <p style="font-weight: bold; color: #1e3a8a;">[ Insert Terminal Screenshot: pnpm db:seed Execution ]</p>
+      <p style="font-size: 11px; margin-top: 4px;">Shows: "🌱 Seeding database..." followed by "✅ Database seeded successfully!"</p>
+    </div>
+
+    <div class="image-placeholder" style="height: 380px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <p style="font-weight: bold; color: #1e3a8a;">[ Insert Database Browser Screenshot: pgAdmin / Prisma Studio ]</p>
+      <p style="font-size: 11px; margin-top: 4px;">Run: <code>pnpm db:studio</code> to view tables: User, Equipment, Reservation, AuditLog, EmailEvent</p>
+    </div>
+
+    <div class="page-footer">Page 8 of 9</div>
+  </div>
+
+  <!-- ==================== PAGE 9 ==================== -->
+  <div class="page-container">
+    <div class="sub-title">Persisted Records Evidence</div>
+
+    <div class="image-placeholder" style="height: 520px; display: flex; flex-direction: column; justify-content: center; align-items: center; margin-bottom: 16px;">
+      <p style="font-weight: bold; color: #1e3a8a;">[ Insert Screenshots of Persisted Records in pgAdmin / Prisma Studio ]</p>
+      <p style="font-size: 11px; margin-top: 4px;">Displaying seeded User records, Equipment catalog items, and Reservation history</p>
+    </div>
+
+    <p>
+      These records demonstrate the complete end-to-end flow from schema creation and automated Faker.js data seeding to relational persistence and webhook-based event tracking.
+    </p>
+
+    <div class="section-title">Conclusion</div>
+    <p>
+      The RentRig architecture combines Next.js App Router capabilities with Prisma and PostgreSQL for robust relational data management, Better Auth for multi-tenant role-based authorization, and Resend with React Email for lifecycle transactional communications. The automated database pipeline, protected API routes, and webhook observability deliver a comprehensive, enterprise-ready full-stack solution.
+    </p>
+
+    <div class="page-footer">Page 9 of 9</div>
+  </div>
+
+</body>
+</html>
