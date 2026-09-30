@@ -106,7 +106,7 @@ rentrig/
 ### 2. Clone & Install
 
 ```bash
-git clone https://github.com/parthgogari04/rentrig.git
+git clone https://github.com/parrrthgogari/rentrig.git
 cd rentrig
 pnpm install
 ```
