@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  GUEST
+}
+
+enum ReservationStatus {
+  PENDING
+  CONFIRMED
+  ACTIVE
+  COMPLETED
+  CANCELLED
+}
+
+enum EmailEventType {
+  DELIVERED
+  BOUNCED
+  OPENED
+  CLICKED
+  COMPLAINED
+}
+
+model User {
+  id            String   @id @default(cuid())
+  name          String
+  email         String   @unique
+  emailVerified Boolean  @default(false)
+  image         String?
+  role          Role     @default(GUEST)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  sessions     Session[]
+  accounts     Account[]
+  reservations Reservation[]
+  auditLogs    AuditLog[]
+  reviews      Review[]
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  ipAddress String?
+  userAgent String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Verification {
+  id         String   @id @default(cuid())
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+enum EquipmentCategory {
+  GPU_SERVER
+  DRONE
+  LAB_INSTRUMENT
+  VR_AR_HEADSET
+  CAMERA_GEAR
+  ROBOTICS_KIT
+}
+
+model Equipment {
+  id           String            @id @default(cuid())
+  slug         String            @unique
+  name         String
+  description  String
+  category     EquipmentCategory
+  brand        String
+  model        String
+  pricePerDay  Float
+  available    Boolean           @default(true)
+  imageUrl     String?
+  specs        Json
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  reservations Reservation[]
+  reviews      Review[]
+}
+
+model Reservation {
+  id          String            @id @default(cuid())
+  userId      String
+  equipmentId String
+  startDate   DateTime
+  endDate     DateTime
+  totalPrice  Float
+  status      ReservationStatus @default(PENDING)
+  notes       String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  user        User        @relation(fields: [userId], references: [id])
+  equipment   Equipment   @relation(fields: [equipmentId], references: [id])
+  emailEvents EmailEvent[]
+  auditLogs   AuditLog[]
+}
+
+model Review {
+  id          String    @id @default(cuid())
+  userId      String
+  equipmentId String
+  rating      Int
+  comment     String?
+  createdAt   DateTime  @default(now())
+
+  user      User      @relation(fields: [userId], references: [id])
+  equipment Equipment @relation(fields: [equipmentId], references: [id])
+}
+
+model AuditLog {
+  id            String   @id @default(cuid())
+  userId        String?
+  reservationId String?
+  action        String
+  entity        String
+  entityId      String
+  metadata      Json?
+  createdAt     DateTime @default(now())
+
+  user        User?        @relation(fields: [userId], references: [id])
+  reservation Reservation? @relation(fields: [reservationId], references: [id])
+}
+
+model EmailEvent {
+  id            String         @id @default(cuid())
+  reservationId String?
+  toEmail       String
+  subject       String
+  resendId      String?
+  eventType     EmailEventType
+  metadata      Json?
+  createdAt     DateTime       @default(now())
+
+  reservation Reservation? @relation(fields: [reservationId], references: [id])
+}
